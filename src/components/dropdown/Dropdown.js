@@ -19,6 +19,7 @@ export class Dropdown extends Component {
         className: null,
         scrollHeight: '200px',
         filter: false,
+        filterBy: null,
         filterPlaceholder: null,
         editable: false,
         placeholder:null,
@@ -52,6 +53,7 @@ export class Dropdown extends Component {
         className: PropTypes.string,
         scrollHeight: PropTypes.string,
         filter: PropTypes.bool,
+        filterBy: PropTypes.bool,
         filterPlaceholder: PropTypes.string,
         editable:PropTypes.bool,
         placeholder: PropTypes.string,
@@ -509,9 +511,9 @@ export class Dropdown extends Component {
     
     filter(option) {
         let filterValue = this.state.filter.trim().toLowerCase();
-        let optionLabel = this.getOptionLabel(option);
+        let optionFilter = this.getOptionFilter(option);
         
-        return optionLabel.toLowerCase().indexOf(filterValue.toLowerCase()) > -1;
+        return optionFilter.toLowerCase().indexOf(filterValue.toLowerCase()) > -1;
     }
     
     hasFilter() {
@@ -612,6 +614,15 @@ export class Dropdown extends Component {
     getOptionLabel(option) {
         return this.props.optionLabel ? ObjectUtils.resolveFieldData(option, this.props.optionLabel) : option.label;
     }
+
+    getOptionFilter(option) {
+        if(!this.props.filterBy) {
+            return option.label;
+        }
+        const searchFields = this.props.filterBy.split(',');
+        const searchFieldsValues = searchFields.map( field => ObjectUtils.resolveFieldData(option, field.trim() ));
+        return searchFieldsValues.join(' ');
+    }    
 
     getOptionKey(option) {
         return this.props.dataKey ? ObjectUtils.resolveFieldData(option, this.props.dataKey) : this.getOptionLabel(option);

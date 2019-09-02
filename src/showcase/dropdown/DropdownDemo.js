@@ -41,7 +41,7 @@ export class DropdownDemo extends Component {
             return (
                 <div className="p-clearfix">
                     <img alt={option.label} src={logoPath} style={{display:'inline-block',margin:'5px 0 0 5px'}} width="24"/>
-                    <span style={{float:'right',margin:'.5em .25em 0 0'}}>{option.label}</span>
+                    <span style={{float:'right',margin:'.5em .25em 0 0'}}>{option.label} - {option.country}</span>
                 </div>
             );
         }
@@ -57,15 +57,15 @@ export class DropdownDemo extends Component {
         ];
 
         const cars = [
-            {label: 'Audi', value: 'Audi'},
-            {label: 'BMW', value: 'BMW'},
-            {label: 'Fiat', value: 'Fiat'},
-            {label: 'Honda', value: 'Honda'},
-            {label: 'Jaguar', value: 'Jaguar'},
-            {label: 'Mercedes', value: 'Mercedes'},
-            {label: 'Renault', value: 'Renault'},
-            {label: 'VW', value: 'VW'},
-            {label: 'Volvo', value: 'Volvo'}
+            {label: 'Audi', value: 'Audi', country: "Germany"},
+            {label: 'BMW', value: 'BMW', country: "Germany"},
+            {label: 'Fiat', value: 'Fiat', country: "Italy"},
+            {label: 'Honda', value: 'Honda', country: "Japan"},
+            {label: 'Jaguar', value: 'Jaguar', country: "USA"},
+            {label: 'Mercedes', value: 'Mercedes', country: "Germany"},
+            {label: 'Renault', value: 'Renault', country: "French"},
+            {label: 'VW', value: 'VW', country: "Germany"},
+            {label: 'Volvo', value: 'Volvo', country: "Germany"}
         ];
 
         return (
@@ -89,7 +89,7 @@ export class DropdownDemo extends Component {
 
                     <h3>Advanced</h3>
                     <Dropdown value={this.state.car2} options={cars} onChange={this.onCarChange2} itemTemplate={this.carTemplate}
-                              filter={true} filterPlaceholder="Select Car" filterBy="label,value" showClear={true}/>
+                              filter={true} filterPlaceholder="Select Car" filterBy="label,value,country" showClear={true} style={{width: '250px'}}/>
                     <div style={{marginTop: '.5em'}}>{this.state.car2 ? 'Selected Car: ' + this.state.car2 : 'No car selected'}</div>
                 </div>
 
@@ -175,7 +175,7 @@ const cities = [
 
                         <CodeHighlight className="language-jsx">
                             {`
-<Dropdown value={this.state.car} options={cars} onChange={(e) => {this.setState({city: e.value})}} filter={true} filterPlaceholder="Select Car" filterBy="label,value" placeholder="Select a Car"/>
+<Dropdown value={this.state.car} options={cars} onChange={(e) => {this.setState({city: e.value})}} filter={true} filterPlaceholder="Select Car" filterBy="label,value,country" placeholder="Select a Car"/>
 
 `}
                         </CodeHighlight>
@@ -201,7 +201,7 @@ carTemplate(option) {
         return (
             <div className="p-clearfix">
                 <img alt={option.label} src={logoPath} style={{display:'inline-block',margin:'5px 0 0 5px'}} width="24"/>
-                <span style={{float:'right', margin:'.5em .25em 0 0'}}>{option.label}</span>
+                <span style={{float:'right',margin:'.5em .25em 0 0'}}>{option.label} - {option.country}</span>
             </div>
         );
     }
@@ -275,6 +275,12 @@ carTemplate(option) {
                                         <td>boolean</td>
                                         <td>false</td>
                                         <td>When specified, displays an input field to filter the items on keyup.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>filterBy</td>
+                                        <td>string</td>
+                                        <td>null</td>
+                                        <td>When specified, define one or more properties for filter.</td>
                                     </tr>
                                     <tr>
                                         <td>filterPlaceholder</td>
@@ -560,15 +566,15 @@ export class DropdownDemo extends Component {
         ];
 
         const cars = [
-            {label: 'Audi', value: 'Audi'},
-            {label: 'BMW', value: 'BMW'},
-            {label: 'Fiat', value: 'Fiat'},
-            {label: 'Honda', value: 'Honda'},
-            {label: 'Jaguar', value: 'Jaguar'},
-            {label: 'Mercedes', value: 'Mercedes'},
-            {label: 'Renault', value: 'Renault'},
-            {label: 'VW', value: 'VW'},
-            {label: 'Volvo', value: 'Volvo'}
+            {label: 'Audi', value: 'Audi', country: "Germany"},
+            {label: 'BMW', value: 'BMW', country: "Germany"},
+            {label: 'Fiat', value: 'Fiat', country: "Italy"},
+            {label: 'Honda', value: 'Honda', country: "Japan"},
+            {label: 'Jaguar', value: 'Jaguar', country: "USA"},
+            {label: 'Mercedes', value: 'Mercedes', country: "Germany"},
+            {label: 'Renault', value: 'Renault', country: "French"},
+            {label: 'VW', value: 'VW', country: "Germany"},
+            {label: 'Volvo', value: 'Volvo', country: "Germany"}
         ];
 
         return (
@@ -592,7 +598,7 @@ export class DropdownDemo extends Component {
 
                     <h3>Advanced</h3>
                     <Dropdown value={this.state.car2} options={cars} onChange={this.onCarChange2} itemTemplate={this.carTemplate}
-                              filter={true} filterPlaceholder="Select Car" filterBy="label,value" showClear={true}/>
+                              filter={true} filterPlaceholder="Select Car" filterBy="label,value,country" showClear={true}  style={{width: '250px'}}/>
                     <div style={{marginTop: '.5em'}}>{this.state.car2 ? 'Selected Car: ' + this.state.car2 : 'No car selected'}</div>
                 </div>
             </div>
