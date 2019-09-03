@@ -280,7 +280,7 @@ carTemplate(option) {
                                         <td>filterBy</td>
                                         <td>string</td>
                                         <td>null</td>
-                                        <td>When specified, define one or more properties for filter.</td>
+                                        <td>When specified and filtering is enabled, filterBy decides which field or fields (comma separated) to search against.</td>
                                     </tr>
                                     <tr>
                                         <td>filterPlaceholder</td>
